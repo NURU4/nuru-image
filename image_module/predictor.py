@@ -17,9 +17,11 @@ import cv2
 import flask
 import numpy as np
 
+from flask_cors import CORS
 from mask import create_mask
 from torchvision import transforms
 from PIL import Image, ImageDraw, ImageOps
+
 
 prefix = "/opt/ml/"
 model_path = os.path.join(prefix, "model")
@@ -80,6 +82,7 @@ class ImageModule(object):
 
 # The flask app for serving predictions
 app = flask.Flask(__name__)
+CORS(app)
 
 @app.route("/ping", methods=["GET"])
 def ping():
@@ -103,7 +106,7 @@ def transformation():
         image = ImageModule.string_to_image(flask.request.data)
     else:
         return flask.Response(
-            response=f"This predictor only supports png, jpeg, jpg type images. But, you sent {flask.request.content_type} type.", status=415, mimetype="text/plain"
+            response=f"This predictor only supports png, jpeg, jpg type images, but you sent {flask.request.content_type} type.", status=415, mimetype="text/plain"
         )
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

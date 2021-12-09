@@ -17,11 +17,10 @@ RUN apt-get update \
   && ln -s /usr/bin/python3 python \
   && pip3 install --upgrade pip
 
-RUN pip3 install torch==1.8.2+cu102 torchvision==0.9.2+cu102 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html && \
-    pip install numpy scipy opencv-python tensorflow joblib matplotlib pandas \
+RUN pip3 install numpy scipy torch==1.8.1 torchvision opencv-python tensorflow joblib matplotlib pandas \
     albumentations==0.5.2 pytorch-lightning==1.2.9 tabulate easydict==1.9.0 kornia==0.5.0 webdataset \
     packaging gpustat tqdm pyyaml hydra-core==1.1.0.dev6 scikit-learn==0.24.2 tabulate scikit-image==0.17.2 \
-    gunicorn==19.9.0 gevent flask && \
+    gunicorn==19.9.0 gevent flask flask_cors && \
         rm -rf /root/.cache
 
 ENV TORCH_HOME="/home/$USERNAME/.torch"
