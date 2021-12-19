@@ -82,7 +82,7 @@ class ImageModule(object):
 
 # The flask app for serving predictions
 app = flask.Flask(__name__)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route("/ping", methods=["GET"])
 def ping():
