@@ -12,11 +12,11 @@ The image module serves the created images through AWS SageMaker. For more infor
 
 ## Output examples
 
-<img src="https://user-images.githubusercontent.com/70506921/147038984-755488fd-b12e-4c10-aa85-e2612904bcb5.png" width="400" height="400" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038183-bd659c97-cfb3-4ffa-83b1-505c815f6cce.png" width="400" height="400"/>
+<img src="https://user-images.githubusercontent.com/70506921/147038984-755488fd-b12e-4c10-aa85-e2612904bcb5.png" width="400" height="450" border="1" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038183-bd659c97-cfb3-4ffa-83b1-505c815f6cce.png" width="400" height="400"  border="1"/>
 
-<img src="https://user-images.githubusercontent.com/70506921/147038991-c815c15d-ad5c-4ed6-ad3c-94dda244a98b.png" width="400" height="400" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038179-12375b8d-b5f7-4856-aa09-ae79100dbff1.png" width="400" height="400"/>
+<img src="https://user-images.githubusercontent.com/70506921/147038991-c815c15d-ad5c-4ed6-ad3c-94dda244a98b.png" width="400" height="400" border="1" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038179-12375b8d-b5f7-4856-aa09-ae79100dbff1.png" width="400" height="400" border="1"/>
 
-<img src="https://user-images.githubusercontent.com/70506921/147038995-a2e423ef-d06d-4077-90d2-87400a4bf76d.png" width="400" height="400" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038172-7e81d916-cb66-4a71-8b5e-118876738ec0.png" width="400" height="400"/>
+<img src="https://user-images.githubusercontent.com/70506921/147038995-a2e423ef-d06d-4077-90d2-87400a4bf76d.png" width="400" height="400" border="1" margin="5"/> <img src="https://user-images.githubusercontent.com/70506921/147038172-7e81d916-cb66-4a71-8b5e-118876738ec0.png" width="400" height="400" border="1"/>
 
 
 ## Citation
