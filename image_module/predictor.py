@@ -40,17 +40,17 @@ class ImageModule(object):
         """
         if cls.model == None:
             device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-            cls.model = torch.load(os.path.join(model_path, "image-module.pt"), map_location=device)
+            cls.model = torch.jit.load(os.path.join(model_path, "image-inpainter.pt"), map_location=device)
             cls.model.eval()
         return cls.model
 
     @classmethod
-    def predict(cls, input):
+    def predict(cls, image, mask):
         """
         For the input, do the predictions and return them.
         """
         clf = cls.get_model()
-        return clf(input)
+        return clf(image, mask)
 
     @classmethod
     def string_to_image(cls, base64_string):
@@ -121,18 +121,17 @@ def transformation():
         x, y, w, h = point
         image_draw.rectangle((x, y, x + w, y + h),  outline=(255, 0, 0), width=2)
         mask_draw.rectangle((x, y, x + w, y + h), fill=(255, 255, 255))
-    
+
+    image = transforms.ToTensor()(image).to(device).unsqueeze(0)
+    mask = transforms.Grayscale()(transforms.ToTensor()(mask)).to(device).unsqueeze(0)
+    mask = (mask > 0) * 1
+
     with torch.no_grad():
-        batch = dict()
-        batch['image'] = transforms.ToTensor()(image).to(device).unsqueeze(0)
-        batch['mask'] = transforms.Grayscale()(transforms.ToTensor()(mask)).to(device).unsqueeze(0)
-        batch['mask'] = (batch['mask'] > 0) * 1
+        inpainted_image = ImageModule.predict(image, mask)  
 
-        batch = ImageModule.predict(batch)  
-
-        cur_res = batch['inpainted'][0].permute(1, 2, 0).detach().cpu().numpy()
-        cur_res = np.clip(cur_res * 255, 0, 255).astype('uint8')
-        cur_res = cv2.cvtColor(cur_res, cv2.COLOR_RGB2BGR)
+    cur_res = inpainted_image[0].permute(1, 2, 0).detach().cpu().numpy()
+    cur_res = np.clip(cur_res * 255, 0, 255).astype('uint8')
+    cur_res = cv2.cvtColor(cur_res, cv2.COLOR_RGB2BGR)
 
     is_success, output_buffer = cv2.imencode(".png", cur_res)
     if not is_success:

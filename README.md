@@ -18,7 +18,6 @@ The image module serves the created images through AWS SageMaker. For more infor
 
 <img src="https://user-images.githubusercontent.com/70506921/147038995-a2e423ef-d06d-4077-90d2-87400a4bf76d.png" width="400" height="400"/> <img src="https://user-images.githubusercontent.com/70506921/147038172-7e81d916-cb66-4a71-8b5e-118876738ec0.png" width="400" height="400"/>
 
-
 ## Citation
 ```
 @article{suvorov2021resolution,
